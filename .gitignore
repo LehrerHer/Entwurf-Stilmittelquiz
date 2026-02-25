@@ -1,0 +1,18 @@
+# Node.js
+node_modules/
+
+# Datenbank (enthält echte Beiträge – nicht ins Repo einchecken)
+blog.db
+blog.db-wal
+blog.db-shm
+
+# Hochgeladene Dateien
+uploads/
+
+# Umgebungsvariablen (enthält geheime Pfade)
+.env
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.log
