@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Stilmittel-Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klassen-Blog 10d – Starten</title>
 <style>
 :root {
   --bg: #0f1923;
@@ -14,633 +14,314 @@
   --accent-light: rgba(232,196,104,0.12);
   --text: #e8e0d4;
   --muted: #7a8fa0;
-  --correct: #4caf7d;
-  --wrong: #e05c5c;
-  --correct-bg: rgba(76,175,125,0.15);
-  --wrong-bg: rgba(224,92,92,0.15);
+  --green: #4caf7d;
+  --green-bg: rgba(76,175,125,0.12);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; }
-body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-.wrap { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+.container { max-width: 560px; width: 100%; }
 
-/* HOME */
-#home { text-align: center; padding: 40px 0 40px; }
-#home .book-icon { font-size: 52px; margin-bottom: 14px; }
-#home h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; line-height: 1.15; font-style: italic; }
-#home .sub { color: var(--muted); font-style: italic; margin-top: 8px; font-size: 0.92rem; }
-.divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 16px auto; }
+/* Header */
+.header { text-align: center; margin-bottom: 36px; }
+.header .icon { font-size: 3rem; margin-bottom: 12px; }
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+.header p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-top: 6px;
+}
+.divider {
+  width: 50px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 16px auto 0;
+}
 
-/* FILTER */
-.filter-section { margin-bottom: 20px; text-align: left; }
-.filter-title { color: var(--accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-.filter-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.filter-btn { background: var(--surface); border: 1.5px solid var(--border); border-radius: 20px; padding: 6px 14px; font-family: Georgia, serif; font-size: 0.78rem; color: var(--muted); cursor: pointer; transition: all 0.15s; }
-.filter-btn.active { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-/* MODE GRID */
-.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
-.mode-card { background: var(--card); border: 1.5px solid var(--border); border-radius: 14px; padding: 18px 12px; cursor: pointer; transition: border-color 0.18s, background 0.18s, transform 0.18s; text-align: center; -webkit-user-select: none; user-select: none; }
-.mode-card:hover, .mode-card:active { border-color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
-.mode-card .icon { font-size: 1.7rem; margin-bottom: 7px; }
-.mode-card h3 { color: var(--accent); font-size: 0.88rem; margin-bottom: 3px; }
-.mode-card p { color: var(--muted); font-size: 0.72rem; font-style: italic; }
-.mode-card.full-width { grid-column: 1 / -1; }
-.hint-box { background: var(--surface); border-radius: 12px; padding: 14px 18px; border: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; font-style: italic; line-height: 1.6; }
+/* Steps */
+.steps { display: flex; flex-direction: column; gap: 14px; }
+.step { display: flex; align-items: flex-start; gap: 14px; }
+.step-num {
+  min-width: 28px; height: 28px;
+  background: var(--accent);
+  color: #0f1923;
+  border-radius: 50%;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-body { font-size: 0.88rem; line-height: 1.6; color: var(--muted); }
+.step-body strong { color: var(--text); }
+code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-family: 'SF Mono', 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: var(--accent);
+}
+.step-note {
+  font-size: 0.76rem;
+  color: var(--muted);
+  opacity: 0.7;
+  margin-top: 3px;
+}
 
-/* QUIZ */
-#quiz { padding-top: 28px; padding-bottom: 40px; }
-.progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.progress-label { font-size: 0.8rem; color: var(--muted); font-style: italic; }
-.score-label { font-size: 1rem; color: var(--accent); }
-.progress-bar { height: 5px; background: var(--surface); border-radius: 3px; overflow: hidden; margin-bottom: 20px; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #f4a261); border-radius: 3px; transition: width 0.4s ease; }
-.q-card { background: var(--card); border-radius: 16px; padding: 22px 18px 18px; border: 1px solid var(--border); position: relative; overflow: hidden; margin-bottom: 16px; }
-.q-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #f4a261); }
-.q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-.q-badge { display: inline-block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 2px 8px; }
-.q-kategorie { display: inline-block; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; }
-.q-text { font-size: clamp(1.05rem, 3.5vw, 1.32rem); font-weight: 700; line-height: 1.4; color: var(--text); }
-.q-hint { margin-top: 11px; padding: 9px 13px; background: rgba(232,196,104,0.08); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; font-size: 0.83rem; color: var(--muted); font-style: italic; }
-.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.opt-btn { background: var(--surface); border: 2px solid var(--border); border-radius: 12px; padding: 14px 11px; cursor: pointer; font-family: Georgia, serif; font-size: 0.9rem; color: var(--text); text-align: center; line-height: 1.35; min-height: 58px; transition: border-color 0.15s, background 0.15s, color 0.15s; -webkit-user-select: none; user-select: none; }
-.opt-btn:not(.locked):hover, .opt-btn:not(.locked):active { border-color: var(--accent); background: var(--accent-light); }
-.opt-btn.correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
-.opt-btn.wrong { background: var(--wrong-bg); border-color: var(--wrong); color: var(--wrong); }
-.opt-btn.locked { cursor: default; }
-.feedback-box { margin-top: 16px; padding: 11px 16px; border-radius: 10px; text-align: center; font-style: italic; font-size: 0.92rem; display: none; }
-.feedback-box.correct { background: var(--correct-bg); border: 1px solid var(--correct); color: var(--correct); text-align: left; }
-.feedback-box.wrong { background: var(--wrong-bg); border: 1px solid var(--wrong); color: var(--wrong); text-align: left; }
-.feedback-box .fb-title { font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
-.feedback-box .fb-erkl { font-style: normal; font-size: 0.84rem; line-height: 1.5; opacity: 0.9; }
-.next-btn { display: none; margin: 14px auto 0; background: var(--accent); color: #0f1923; border: none; border-radius: 12px; padding: 13px 38px; font-family: Georgia, serif; font-weight: 700; font-size: 1rem; cursor: pointer; }
-.next-btn.show { display: block; }
+/* Open button */
+.open-btn {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #0f1923;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+  margin-bottom: 16px;
+}
+.open-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-/* RESULT */
-#result { text-align: center; padding: 44px 0 40px; }
-#result .trophy { font-size: 60px; margin-bottom: 14px; }
-#result h2 { font-size: 1.9rem; color: var(--accent); font-style: italic; margin-bottom: 8px; }
-#result .score-info { color: var(--muted); font-size: 0.92rem; font-style: italic; margin-bottom: 26px; }
-.wrong-list { background: var(--card); border-radius: 14px; padding: 18px; border: 1px solid var(--border); text-align: left; margin-bottom: 26px; }
-.wrong-list h3 { color: var(--accent); font-size: 0.95rem; margin-bottom: 14px; }
-.wrong-item { padding-bottom: 13px; margin-bottom: 13px; border-bottom: 1px solid var(--border); }
-.wrong-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.wrong-item .sm-name { font-weight: 700; color: var(--text); font-size: 0.93rem; }
-.wrong-item .sm-kat { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
-.wrong-item .sm-bsp { color: var(--muted); font-style: italic; font-size: 0.83rem; margin-top: 3px; }
-.wrong-item .sm-erkl { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
-.wrong-item .sm-wkng { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
-.wrong-item .sm-chosen { color: var(--wrong); font-size: 0.78rem; margin-top: 4px; }
-.result-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-primary { background: var(--accent); color: #0f1923; border: none; border-radius: 12px; padding: 13px 30px; font-family: Georgia, serif; font-weight: 700; font-size: 0.97rem; cursor: pointer; }
-.btn-secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 12px; padding: 13px 30px; font-family: Georgia, serif; font-weight: 700; font-size: 0.97rem; cursor: pointer; }
-.hidden { display: none !important; }
+/* Status indicator */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  justify-content: center;
+}
+#status-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+#status-dot.online { background: var(--green); box-shadow: 0 0 6px var(--green); }
+#status-dot.checking { background: var(--accent); animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+/* Port config */
+.port-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.port-row label { font-size: 0.82rem; color: var(--muted); }
+.port-input {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.88rem;
+  color: var(--text);
+  width: 90px;
+  font-family: 'SF Mono', 'Courier New', monospace;
+}
+.port-input:focus { outline: none; border-color: var(--accent); }
+.check-btn {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.check-btn:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
 
-<!-- HOME -->
-<div id="home" class="wrap">
-  <div class="book-icon">&#128218;</div>
-  <h1>Stilmittel-Quiz</h1>
-  <p class="sub">W&auml;hle Umfang, Kategorien und Spielmodus</p>
-  <div class="divider"></div>
+<div class="container">
 
-  <div class="filter-section">
-    <div class="filter-title">Umfang</div>
-    <div class="filter-grid">
-      <button class="filter-btn active" data-scope="alle" onclick="toggleScope(this)">Alle Stilmittel</button>
-      <button class="filter-btn" data-scope="mittelstufe" onclick="toggleScope(this)">Mittelstufe (Kl.&nbsp;5&ndash;10)</button>
-    </div>
+  <!-- Header -->
+  <div class="header">
+    <div class="icon">&#128221;</div>
+    <h1>Klassen-Blog&nbsp;10d</h1>
+    <p>Lokale Entwicklungsumgebung &ndash; Mac</p>
+    <div class="divider"></div>
   </div>
 
-  <div class="filter-section">
-    <div class="filter-title">Anzahl</div>
-    <div class="filter-grid">
-      <button class="filter-btn active" data-count="all" onclick="toggleCount(this)">Alle Stilmittel</button>
-      <button class="filter-btn" data-count="10" onclick="toggleCount(this)">10 zuf&auml;llige</button>
-    </div>
-  </div>
+  <!-- Blog öffnen -->
+  <a id="open-link" href="http://localhost:3000" target="_blank" class="open-btn">
+    &#127760;&nbsp; Blog im Browser &ouml;ffnen
+  </a>
 
-  <div class="filter-section">
-    <div class="filter-title">Kategorien</div>
-    <div class="filter-grid">
-      <button class="filter-btn active" data-kat="alle" onclick="toggleFilter(this)">Alle</button>
-      <button class="filter-btn" data-kat="Bildlichkeit" onclick="toggleFilter(this)">Bildlichkeit</button>
-      <button class="filter-btn" data-kat="Wortfigur" onclick="toggleFilter(this)">Wortfiguren</button>
-      <button class="filter-btn" data-kat="Satzfigur" onclick="toggleFilter(this)">Satzfiguren</button>
-      <button class="filter-btn" data-kat="Gedankenfigur" onclick="toggleFilter(this)">Gedankenfiguren</button>
-      <button class="filter-btn" data-kat="Klangfigur" onclick="toggleFilter(this)">Klangfiguren</button>
+  <!-- Server-Status -->
+  <div class="card" style="margin-bottom:16px; padding:16px 24px;">
+    <div class="status-row">
+      <div id="status-dot"></div>
+      <span id="status-text">Status wird gepr&uuml;ft &hellip;</span>
+    </div>
+    <div class="port-row">
+      <label>Port:</label>
+      <input id="port-input" class="port-input" type="number" value="3000" min="1" max="65535">
+      <button class="check-btn" onclick="checkServer()">Pr&uuml;fen</button>
     </div>
   </div>
 
-  <div class="mode-grid">
-    <div class="mode-card" onclick="startQuiz('name_from_beispiel')">
-      <div class="icon">&#9997;&#65039;</div>
-      <h3>Beispiel &rarr; Name</h3>
-      <p>Erkenne das Stilmittel am Beispiel</p>
-    </div>
-    <div class="mode-card" onclick="startQuiz('name_from_erklaerung')">
-      <div class="icon">&#128214;</div>
-      <h3>Erkl&auml;rung &rarr; Name</h3>
-      <p>Ordne die Definition dem Stilmittel zu</p>
-    </div>
-    <div class="mode-card" onclick="startQuiz('wirkung_from_name')">
-      <div class="icon">&#128161;</div>
-      <h3>Name &rarr; Wirkung</h3>
-      <p>Nenne die Wirkung des Stilmittels</p>
-    </div>
-    <div class="mode-card" onclick="startQuiz('name_from_wirkung')">
-      <div class="icon">&#128269;</div>
-      <h3>Wirkung &rarr; Name</h3>
-      <p>Finde das passende Stilmittel</p>
-    </div>
-    <div class="mode-card full-width" onclick="startQuiz('mixed')">
-      <div class="icon">&#127922;</div>
-      <h3>Gemischt</h3>
-      <p>Alle Fragetypen durcheinander</p>
-    </div>
-  </div>
-  <div class="hint-box" id="hint-box">37 Stilmittel werden abgefragt. Tippe auf die richtige Antwort unter 4 Optionen.</div>
-</div>
+  <!-- Mac-Anleitung -->
+  <div class="card">
+    <div class="card-title">&#63743;&nbsp; Mac &ndash; Blog starten</div>
+    <div class="steps">
 
-<!-- QUIZ -->
-<div id="quiz" class="wrap hidden">
-  <div class="progress-meta">
-    <span class="progress-label" id="prog-label">Frage 1 von 10</span>
-    <span class="score-label">&#9733; <span id="score-val">0</span></span>
-  </div>
-  <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
-  <div class="q-card">
-    <div class="q-meta">
-      <div class="q-badge" id="q-badge"></div>
-      <div class="q-kategorie" id="q-kategorie"></div>
-    </div>
-    <div class="q-text" id="q-text"></div>
-    <div class="q-hint hidden" id="q-hint"></div>
-  </div>
-  <div class="options-grid" id="options-grid"></div>
-  <div class="feedback-box" id="feedback"></div>
-  <button class="next-btn" id="next-btn" onclick="nextQuestion()">Weiter &rarr;</button>
-</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Node.js installieren</strong> (falls noch nicht vorhanden)<br>
+          <span class="step-note">nodejs.org &rarr; &bdquo;LTS&ldquo; laden &rarr; Installer ausf&uuml;hren</span>
+        </div>
+      </div>
 
-<!-- RESULT -->
-<div id="result" class="wrap hidden">
-  <div class="trophy" id="trophy">&#127942;</div>
-  <h2 id="result-msg">Super!</h2>
-  <p class="score-info" id="result-info"></p>
-  <div class="wrong-list hidden" id="wrong-list">
-    <h3>Zum Wiederholen:</h3>
-    <div id="wrong-items"></div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>start.sh ausf&uuml;hrbar machen</strong> (einmalig, im Terminal):<br>
+          <code>chmod +x start.sh</code>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Blog starten:</strong> <code>start.sh</code> doppelklicken<br>
+          <span class="step-note">Oder im Terminal: <code>./start.sh</code></span><br>
+          <span class="step-note">Der Browser &ouml;ffnet sich nach 2 Sekunden automatisch.</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Blog stoppen:</strong> im Terminal <code>Ctrl&nbsp;+&nbsp;C</code> dr&uuml;cken
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div class="result-btns">
-    <button class="btn-primary" onclick="replay()">Nochmal spielen</button>
-    <button class="btn-secondary" onclick="goHome()">Modus w&auml;hlen</button>
+
+  <!-- URLs -->
+  <div class="card">
+    <div class="card-title">&#128279;&nbsp; Adressen (Standard-Port&nbsp;3000)</div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.84rem; color:var(--muted);">&#128218; Sch&uuml;ler-Blog</span>
+        <code id="url-student">localhost:3000/klasse10d-xk92m</code>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.84rem; color:var(--muted);">&#9999;&#65039; Beitrag einreichen</span>
+        <code id="url-neu">localhost:3000/klasse10d-xk92m/neu</code>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <span style="font-size:0.84rem; color:var(--muted);">&#128274; Admin-Bereich</span>
+        <code id="url-admin">localhost:3000/lehrer-admin-xk92m</code>
+      </div>
+    </div>
+    <p style="font-size:0.74rem; color:var(--muted); margin-top:14px; font-style:italic;">
+      Pfade k&ouml;nnen in der <code>.env</code>-Datei ge&auml;ndert werden.
+    </p>
   </div>
+
 </div>
 
 <script>
-// ── DATENBASIS ────────────────────────────────────────────────────────────────
-// mittelstufe: true = im Fachvokabular Kl. 5–10 (Schulcurriculum Gymnasium Twistringen) enthalten
-// Beispiele getrennt durch  ‖  (doppelter Strich) statt Komma, mit Autorennamen wo zutreffend
-var ALLE = [
-  // ── BILDLICHKEIT ──
-  {
-    name: "Metapher", kat: "Bildlichkeit", mittelstufe: true,
-    erklaerung: "Bildlicher Ausdruck ohne Vergleichswort \u2013 ein Wort wird aus seinem eigentlichen Bedeutungsbereich in einen anderen \u00fcbertragen.",
-    beispiel: "\u201eJemandem das Herz brechen\u201c  \u2016  \u201eDas Feuer der Leidenschaft\u201c",
-    wirkung: "veranschaulicht, verdichtet"
-  },
-  {
-    name: "Vergleich", kat: "Bildlichkeit", mittelstufe: true,
-    erklaerung: "Verkn\u00fcpfung zweier Bedeutungsbereiche durch \u201ewie\u201c oder \u201eals\u201c.",
-    beispiel: "\u201eEr k\u00e4mpft wie ein L\u00f6we\u201c  \u2016  \u201eSt\u00e4rker als der Tod\u201c",
-    wirkung: "veranschaulicht, verbindet"
-  },
-  {
-    name: "Personifikation", kat: "Bildlichkeit", mittelstufe: true,
-    erklaerung: "Menschliche Eigenschaften werden auf Nichtmenschliches \u00fcbertragen.",
-    beispiel: "\u201eDie Sonne lacht\u201c  \u2016  \u201eDer Wind fl\u00fcstert\u201c",
-    wirkung: "verlebendigt, vermenschlicht"
-  },
-  {
-    name: "Symbol", kat: "Bildlichkeit", mittelstufe: true,
-    erklaerung: "Ein konkreter Gegenstand steht f\u00fcr eine abstrakte Idee, oft kulturell festgelegt.",
-    beispiel: "Rose = Liebe  \u2016  Taube = Frieden",
-    wirkung: "verdichtend, kulturell"
-  },
-  {
-    name: "Allegorie", kat: "Bildlichkeit", mittelstufe: false,
-    erklaerung: "Fortgesetzte Metapher \u2013 ein abstraktes Konzept wird als konkretes Bild dargestellt.",
-    beispiel: "\u201eSensenmann\u201c als Bild f\u00fcr den Tod  \u2016  \u201eJustitia\u201c mit Waage und Augenbinde",
-    wirkung: "versinnbildlicht Abstraktes"
-  },
-  {
-    name: "Metonymie", kat: "Bildlichkeit", mittelstufe: false,
-    erklaerung: "Ersetzung eines Begriffs durch einen sachlich verwandten (r\u00e4umlich, zeitlich, urs\u00e4chlich).",
-    beispiel: "\u201eBrecht lesen\u201c (statt: ein Werk von Brecht)  \u2016  \u201eDas Wei\u00dfe Haus erkl\u00e4rte \u2026\u201c",
-    wirkung: "verdichtet, ersetzt Begriff durch verwandten"
-  },
-  {
-    name: "Chiffre", kat: "Bildlichkeit", mittelstufe: true,
-    erklaerung: "Verschl\u00fcsseltes Zeichen, das ohne zus\u00e4tzliches Wissen nicht eindeutig zu entschl\u00fcsseln ist.",
-    beispiel: "\u201eJHWH\u201c in der hebr\u00e4ischen Bibel  \u2016  \u201eSchwarzschimmel nacht\u201c (Celan)",
-    wirkung: "verr\u00e4tselt, l\u00e4dt mit Bedeutung auf"
-  },
-  // ── WORTFIGUREN ──
-  {
-    name: "Hyperbel", kat: "Wortfigur", mittelstufe: true,
-    erklaerung: "Starke \u00dcbertreibung eines Sachverhalts.",
-    beispiel: "\u201etodernst\u201c  \u2016  \u201efuchsteufelswild\u201c  \u2016  \u201eein Meer von Tr\u00e4nen\u201c",
-    wirkung: "\u00fcbertreibt, intensiviert"
-  },
-  {
-    name: "Litotes", kat: "Wortfigur", mittelstufe: false,
-    erklaerung: "Hervorhebung durch doppelte Verneinung oder bewusste Untertreibung.",
-    beispiel: "\u201enicht selten\u201c  \u2016  \u201enicht unbekannt\u201c  \u2016  \u201edas ist nicht schlecht\u201c",
-    wirkung: "hervorhebend durch Untertreibung"
-  },
-  {
-    name: "Periphrase", kat: "Wortfigur", mittelstufe: false,
-    erklaerung: "Umschreibung eines Begriffs durch kennzeichnende Eigenschaften.",
-    beispiel: "\u201eHalbg\u00f6tter in Wei\u00df\u201c (statt: \u00c4rzte)  \u2016  \u201eder Allm\u00e4chtige\u201c (statt: Gott)",
-    wirkung: "umschreibend, charakterisierend"
-  },
-  {
-    name: "Onomatopoesie", kat: "Wortfigur", mittelstufe: false,
-    erklaerung: "Sprachliche Nachahmung von Ger\u00e4uschen oder Kl\u00e4ngen.",
-    beispiel: "\u201eKnall\u201c  \u2016  \u201eMiau\u201c  \u2016  \u201erumpeln\u201c  \u2016  \u201ezischen\u201c",
-    wirkung: "lautmalerisch, klangnachahmend"
-  },
-  {
-    name: "Emphase", kat: "Wortfigur", mittelstufe: false,
-    erklaerung: "Nachdr\u00fcckliche Hervorhebung eines Wortes oder Ausdrucks.",
-    beispiel: "\u201eMenschen! Menschen!\u201c (Schiller)  \u2016  \u201eDAS ist Kunst!\u201c",
-    wirkung: "betont, emotional aufgeladen"
-  },
-  {
-    name: "Euphemismus", kat: "Wortfigur", mittelstufe: true,
-    erklaerung: "Besch\u00f6nigende Umschreibung eines unangenehmen oder anst\u00f6\u00dfigen Sachverhalts.",
-    beispiel: "\u201eentschlafen\u201c (statt: sterben)  \u2016  \u201efreisetzen\u201c (statt: entlassen)",
-    wirkung: "abmildernd, verh\u00fcllend"
-  },
-  // ── SATZFIGUREN ──
-  {
-    name: "Ellipse", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Auslassung eines Satzteils, der gedanklich erg\u00e4nzt werden kann.",
-    beispiel: "\u201eJe sp\u00e4ter der Abend, desto sch\u00f6ner die G\u00e4ste\u201c  \u2016  \u201eEnde gut, alles gut.\u201c",
-    wirkung: "knapp, dramatisch, temporeich"
-  },
-  {
-    name: "Inversion", kat: "Satzfigur", mittelstufe: false,
-    erklaerung: "Umstellung der \u00fcblichen Satzgliedfolge zur Hervorhebung.",
-    beispiel: "\u201eIn der ungeheuren Weite / Reget keine Welle sich\u201c (Goethe)  \u2016  \u201eDunkel war\u2019s, der Mond schien helle\u201c",
-    wirkung: "hervorhebend durch Umstellung"
-  },
-  {
-    name: "Parallelismus", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Wiederholung der gleichen syntaktischen Struktur in aufeinanderfolgenden S\u00e4tzen oder Satzteilen.",
-    beispiel: "\u201eHei\u00df die Liebe, kalt der Tod\u201c  \u2016  \u201eIch kam, ich sah, ich siegte\u201c (Caesar)",
-    wirkung: "ordnend, rhythmisch"
-  },
-  {
-    name: "Klimax", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Stufenweise Steigerung von Ausdruck zu Ausdruck.",
-    beispiel: "\u201eEr sei mein Freund, mein Engel, mein Gott\u201c (Schiller)  \u2016  \u201eVeni, vidi, vici\u201c (Caesar)",
-    wirkung: "steigernd, eindringlich"
-  },
-  {
-    name: "Akkumulation", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Reihung von Begriffen, die einem gemeinsamen Oberbegriff zugeordnet werden k\u00f6nnen.",
-    beispiel: "\u201eSonne, Mond und Sterne!\u201c  \u2016  \u201eNun ruhen alle W\u00e4lder, Vieh, Menschen, St\u00e4dt und Felder\u201c (Gerhardt)",
-    wirkung: "veranschaulicht, eindringlich"
-  },
-  {
-    name: "Asyndeton", kat: "Satzfigur", mittelstufe: false,
-    erklaerung: "Reihung von W\u00f6rtern oder Satzteilen ohne verbindende Konjunktionen.",
-    beispiel: "\u201eEin Rot, ein Gr\u00fcn, ein Grau vorbeigesendet\u201c (Rilke)  \u2016  \u201eAlles rennet, rettet, fl\u00fcchtet\u201c (Schiller)",
-    wirkung: "temporeich, aufz\u00e4hlend, dr\u00e4ngend"
-  },
-  {
-    name: "Chiasmus", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "\u00dcberkreuzstellung von syntaktisch oder inhaltlich einander entsprechenden Satzgliedern.",
-    beispiel: "\u201eDie Kunst ist lang \u2013 und kurz ist unser Leben\u201c (Goethe)",
-    wirkung: "kreuzend, symmetrisch, pr\u00e4gnant"
-  },
-  {
-    name: "Polysyndeton", kat: "Satzfigur", mittelstufe: false,
-    erklaerung: "Reihung, bei der zwischen allen Gliedern die gleiche Konjunktion wiederholt wird.",
-    beispiel: "\u201eEinigkeit und Recht und Freiheit\u201c  \u2016  \u201eUnd es wallet und siedet und brauset und zischt\u201c (Schiller)",
-    wirkung: "verlangsamend, aufz\u00e4hlend, feierlich"
-  },
-  {
-    name: "Parataxe", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Aneinanderreihung von Haupts\u00e4tzen (Satzreihe) ohne Unterordnung.",
-    beispiel: "\u201eAm Anfang schuf Gott Himmel und Erde. Und die Erde war w\u00fcst.\u201c (1.\u00a0Mose)",
-    wirkung: "klar, direkt, schlicht"
-  },
-  {
-    name: "Hypotaxe", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Verschachtelung von Haupt- und Nebens\u00e4tzen (Satzgef\u00fcge) mit Unterordnung.",
-    beispiel: "\u201eAn einem der letzten Maitage, das Wetter war sommerlich, bog ein Landauer ein \u2026\u201c (Fontane)",
-    wirkung: "komplex, ausschweifend, detailreich"
-  },
-  {
-    name: "Enjambement", kat: "Satzfigur", mittelstufe: true,
-    erklaerung: "Zeilensprung \u2013 ein Satz wird \u00fcber das Versende hinaus in der n\u00e4chsten Zeile fortgesetzt.",
-    beispiel: "\u201e\u00dcber allen Gipfeln / Ist Ruh\u201c (Goethe)  \u2016  \u201eIch bin so wild nach deinem / Erdbeermund\u201c (Villon/Klammer)",
-    wirkung: "flie\u00dfend, dr\u00e4ngend, spannungserzeugend"
-  },
-  // ── GEDANKENFIGUREN ──
-  {
-    name: "Antithese", kat: "Gedankenfigur", mittelstufe: true,
-    erklaerung: "Gegen\u00fcberstellung gegens\u00e4tzlicher Begriffe oder Gedanken.",
-    beispiel: "\u201eKlein ist der Strauch, gro\u00df ist der Baum\u201c  \u2016  \u201eKrieg und Frieden\u201c (Tolstoi)",
-    wirkung: "kontrastierend, gegen\u00fcberstellend"
-  },
-  {
-    name: "Ironie", kat: "Gedankenfigur", mittelstufe: true,
-    erklaerung: "Das Gegenteil des Gemeinten wird gesagt \u2013 erkennbar durch Kontext oder Tonfall.",
-    beispiel: "\u201eWir haben\u2019s ja\u201c (wenn Geld knapp ist)  \u2016  \u201eDas hast du ja toll hinbekommen!\u201c",
-    wirkung: "verschl\u00fcsselt, doppelb\u00f6dig"
-  },
-  {
-    name: "Oxymoron", kat: "Gedankenfigur", mittelstufe: false,
-    erklaerung: "Verbindung zweier sich logisch widersprechender Begriffe in einer Wortgruppe.",
-    beispiel: "\u201eHassliebe\u201c  \u2016  \u201eberedtes Schweigen\u201c  \u2016  \u201ealter Knabe\u201c",
-    wirkung: "widerspr\u00fcchlich, spannungserzeugend"
-  },
-  {
-    name: "Paradoxon", kat: "Gedankenfigur", mittelstufe: false,
-    erklaerung: "Scheinbar widerspr\u00fcchliche Aussage, die bei n\u00e4herem Hinsehen einen tieferen Sinn enth\u00e4lt.",
-    beispiel: "\u201eIch wei\u00df, dass ich nichts wei\u00df\u201c (Sokrates)  \u2016  \u201eWeniger ist mehr\u201c (Mies van der Rohe)",
-    wirkung: "scheinbar widerspr\u00fcchlich, zum Nachdenken"
-  },
-  {
-    name: "Rhetorische Frage", kat: "Gedankenfigur", mittelstufe: true,
-    erklaerung: "Eine Frage, auf die keine Antwort erwartet wird \u2013 die Antwort ist bereits klar.",
-    beispiel: "\u201eWie viele Menschen m\u00fcssen noch sterben?\u201c  \u2016  \u201eBin ich denn der Einzige, der das sieht?\u201c",
-    wirkung: "appellierend, keine Antwort erwartet"
-  },
-  {
-    name: "Sarkasmus", kat: "Gedankenfigur", mittelstufe: true,
-    erklaerung: "Bei\u00dfender, verletzender Spott \u2013 sch\u00e4rfer und gemeiner als Ironie.",
-    beispiel: "\u201eGibt\u2019s dein T-Shirt auch in deiner Gr\u00f6\u00dfe?\u201c  \u2016  \u201eGlanzleistung \u2013 wie immer!\u201c",
-    wirkung: "bei\u00dfend sp\u00f6ttisch, verletzend"
-  },
-  {
-    name: "Katachrese", kat: "Gedankenfigur", mittelstufe: false,
-    erklaerung: "Verblasste Metapher, die nicht mehr als Bild wahrgenommen wird, oder widerspr\u00fcchliche Bildmischung.",
-    beispiel: "\u201eTischbein\u201c  \u2016  \u201eArm des Flusses\u201c  \u2016  \u201eDas schl\u00e4gt dem Fass die Krone ins Gesicht\u201c",
-    wirkung: "bildlich ersetzend oder bildbr\u00fcchig"
-  },
-  // ── KLANGFIGUREN ──
-  {
-    name: "Alliteration", kat: "Klangfigur", mittelstufe: true,
-    erklaerung: "Wiederholung des gleichen Anfangslauts bei benachbarten W\u00f6rtern.",
-    beispiel: "\u201eMilch macht m\u00fcde M\u00e4nner munter\u201c  \u2016  \u201eVeni, vidi, vici\u201c (Caesar)",
-    wirkung: "betont, einpr\u00e4gsam, klingend"
-  },
-  {
-    name: "Anapher", kat: "Klangfigur", mittelstufe: true,
-    erklaerung: "Wiederholung eines Wortes oder einer Wortgruppe am Anfang aufeinanderfolgender S\u00e4tze oder Verse.",
-    beispiel: "\u201eKein Licht. Kein Ton.\u201c  \u2016  \u201eWer nie sein Brot mit Tr\u00e4nen a\u00df, / Wer nie \u2026\u201c (Goethe)",
-    wirkung: "verst\u00e4rkend, rhythmisch"
-  },
-  {
-    name: "Repetitio", kat: "Klangfigur", mittelstufe: false,
-    erklaerung: "Wiederholung eines Wortes oder Ausdrucks innerhalb eines Satzes oder Verses.",
-    beispiel: "\u201eO Mutter! Was ist Seligkeit? O Mutter!\u201c (B\u00fcrger)  \u2016  \u201eMein Vater, mein Vater\u201c (Goethe)",
-    wirkung: "eindringlich, wiederholend"
-  },
-  {
-    name: "Epipher", kat: "Klangfigur", mittelstufe: false,
-    erklaerung: "Wiederholung eines Wortes oder einer Wortgruppe am Ende aufeinanderfolgender S\u00e4tze oder Verse.",
-    beispiel: "\u201eIch fordere Moral, du lebst Moral\u201c  \u2016  \u201eDoch alle Lust will Ewigkeit, / will tiefe, tiefe Ewigkeit\u201c (Nietzsche)",
-    wirkung: "verst\u00e4rkend am Satzende"
-  },
-  {
-    name: "Tautologie", kat: "Klangfigur", mittelstufe: false,
-    erklaerung: "Wiederholung desselben Sachverhalts mit anderen Worten oder bedeutungsgleichen Ausdr\u00fccken.",
-    beispiel: "\u201evoll und ganz\u201c  \u2016  \u201enie und nimmer\u201c  \u2016  \u201eimmer und ewig\u201c",
-    wirkung: "bekr\u00e4ftigend, redundant"
-  },
-  {
-    name: "Elision", kat: "Klangfigur", mittelstufe: false,
-    erklaerung: "Auslassung eines Lautes oder einer Silbe, meist um das Versma\u00df einzuhalten.",
-    beispiel: "\u201ein ew\u2019gen Tau\u201c (statt: ewigen)  \u2016  \u201eHab\u2019 ich\u201c (statt: Habe ich)",
-    wirkung: "Metrum erhaltend, klanglich weich"
-  }
-];
+var port = 3000;
 
-var MODES = ["name_from_beispiel", "wirkung_from_name", "name_from_wirkung", "name_from_erklaerung"];
-var questions = [], qIndex = 0, score = 0, answered = false, currentMode = null, wrongAnswers = [];
-var activeKat = "alle";
-var activeScope = "alle";
-var activeCount = "all";
-
-function toggleScope(btn) {
-  document.querySelectorAll("[data-scope]").forEach(function(b) { b.classList.remove("active"); });
-  btn.classList.add("active");
-  activeScope = btn.getAttribute("data-scope");
-  updateHintBox();
+function getPort() {
+  var v = parseInt(document.getElementById("port-input").value, 10);
+  return (v > 0 && v < 65536) ? v : 3000;
 }
 
-function toggleCount(btn) {
-  document.querySelectorAll("[data-count]").forEach(function(b) { b.classList.remove("active"); });
-  btn.classList.add("active");
-  activeCount = btn.getAttribute("data-count");
-  updateHintBox();
+function updateLinks() {
+  port = getPort();
+  var base = "http://localhost:" + port;
+  document.getElementById("open-link").href = base;
+  document.getElementById("url-student").textContent = "localhost:" + port + "/klasse10d-xk92m";
+  document.getElementById("url-neu").textContent = "localhost:" + port + "/klasse10d-xk92m/neu";
+  document.getElementById("url-admin").textContent = "localhost:" + port + "/lehrer-admin-xk92m";
 }
 
-function toggleFilter(btn) {
-  document.querySelectorAll("[data-kat]").forEach(function(b) { b.classList.remove("active"); });
-  btn.classList.add("active");
-  activeKat = btn.getAttribute("data-kat");
-  updateHintBox();
+function checkServer() {
+  updateLinks();
+  var dot = document.getElementById("status-dot");
+  var txt = document.getElementById("status-text");
+  dot.className = "checking";
+  txt.textContent = "Verbinde mit localhost:" + port + " \u2026";
+
+  // Try fetching from the server
+  var ctrl = new AbortController();
+  var timer = setTimeout(function() { ctrl.abort(); }, 4000);
+
+  fetch("http://localhost:" + port + "/", { signal: ctrl.signal, mode: "no-cors" })
+    .then(function() {
+      clearTimeout(timer);
+      dot.className = "online";
+      txt.textContent = "Server l\u00e4uft auf Port " + port;
+    })
+    .catch(function(err) {
+      clearTimeout(timer);
+      if (err.name === "AbortError") {
+        dot.className = "";
+        txt.textContent = "Timeout \u2013 Server antwortet nicht auf Port " + port;
+      } else {
+        // no-cors fetch throws TypeError on blocked but server IS up
+        dot.className = "online";
+        txt.textContent = "Server l\u00e4uft auf Port " + port;
+      }
+    });
 }
 
-function getPool() {
-  var pool = ALLE;
-  if (activeScope === "mittelstufe") {
-    pool = pool.filter(function(s) { return s.mittelstufe; });
-  }
-  if (activeKat !== "alle") {
-    pool = pool.filter(function(s) { return s.kat === activeKat; });
-  }
-  return pool;
-}
+document.getElementById("port-input").addEventListener("change", updateLinks);
+document.getElementById("port-input").addEventListener("input", updateLinks);
 
-function updateHintBox() {
-  var filtered = getPool();
-  var hb = document.getElementById("hint-box");
-  var scopeLabel = activeScope === "mittelstufe" ? " (Mittelstufe)" : "";
-  var countInfo = activeCount === "10" ? "10 zuf\u00e4llige von " + filtered.length : filtered.length;
-  hb.textContent = countInfo + " Stilmittel" + scopeLabel + " werden abgefragt. Tippe auf die richtige Antwort unter 4 Optionen.";
-}
-
-function shuffle(arr) {
-  var a = arr.slice();
-  for (var i = a.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-  }
-  return a;
-}
-
-function getWrongOptions(correct, field, pool) {
-  var others = pool.filter(function(s) { return s[field] !== correct[field]; });
-  return shuffle(others).slice(0, 3).map(function(s) { return s[field]; });
-}
-
-function buildQ(item, mode, pool) {
-  if (mode === "name_from_beispiel") {
-    return { prompt: "Welches Stilmittel liegt vor?", quote: item.beispiel, hint: null, answer: item.name, options: shuffle([item.name].concat(getWrongOptions(item, "name", pool))), item: item };
-  }
-  if (mode === "wirkung_from_name") {
-    return { prompt: "Was ist die Wirkung?", quote: item.name, hint: item.beispiel, answer: item.wirkung, options: shuffle([item.wirkung].concat(getWrongOptions(item, "wirkung", pool))), item: item };
-  }
-  if (mode === "name_from_wirkung") {
-    return { prompt: "Welches Stilmittel hat diese Wirkung?", quote: item.wirkung, hint: null, answer: item.name, options: shuffle([item.name].concat(getWrongOptions(item, "name", pool))), item: item };
-  }
-  if (mode === "name_from_erklaerung") {
-    return { prompt: "Welches Stilmittel wird hier erkl\u00e4rt?", quote: item.erklaerung, hint: null, answer: item.name, options: shuffle([item.name].concat(getWrongOptions(item, "name", pool))), item: item };
-  }
-}
-
-function startQuiz(mode) {
-  var pool = getPool();
-  if (pool.length < 4) { alert("Bitte w\u00e4hle eine Kombination mit mindestens 4 Stilmitteln."); return; }
-  currentMode = mode;
-  var shuffled = shuffle(pool);
-  var quizItems = (activeCount === "10" && shuffled.length > 10) ? shuffled.slice(0, 10) : shuffled;
-  questions = quizItems.map(function(item) {
-    var m = mode === "mixed" ? MODES[Math.floor(Math.random() * MODES.length)] : mode;
-    return buildQ(item, m, pool);
-  });
-  qIndex = 0; score = 0; answered = false; wrongAnswers = [];
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("result").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
-  renderQuestion();
-}
-
-function renderQuestion() {
-  var q = questions[qIndex];
-  var total = questions.length;
-  document.getElementById("prog-label").textContent = "Frage " + (qIndex + 1) + " von " + total;
-  document.getElementById("score-val").textContent = score;
-  document.getElementById("prog-fill").style.width = (qIndex / total * 100) + "%";
-  document.getElementById("q-badge").textContent = q.prompt;
-  document.getElementById("q-kategorie").textContent = q.item.kat;
-  document.getElementById("q-text").textContent = q.quote;
-  var hint = document.getElementById("q-hint");
-  if (q.hint) { hint.textContent = "Beispiel: " + q.hint; hint.classList.remove("hidden"); }
-  else { hint.classList.add("hidden"); }
-  var grid = document.getElementById("options-grid");
-  grid.innerHTML = "";
-  q.options.forEach(function(opt) {
-    var btn = document.createElement("button");
-    btn.className = "opt-btn";
-    btn.textContent = opt;
-    btn.addEventListener("click", function() { selectAnswer(opt, btn); });
-    grid.appendChild(btn);
-  });
-  document.getElementById("feedback").style.display = "none";
-  document.getElementById("feedback").className = "feedback-box";
-  document.getElementById("next-btn").classList.remove("show");
-  answered = false;
-}
-
-function selectAnswer(chosen, btn) {
-  if (answered) return;
-  answered = true;
-  var q = questions[qIndex];
-  var correct = chosen === q.answer;
-  document.querySelectorAll(".opt-btn").forEach(function(b) {
-    b.classList.add("locked");
-    if (b.textContent === q.answer) b.classList.add("correct");
-    else if (b === btn && !correct) b.classList.add("wrong");
-  });
-  if (correct) { score++; document.getElementById("score-val").textContent = score; }
-  else { wrongAnswers.push({ item: q.item, chosen: chosen, answer: q.answer }); }
-  var fb = document.getElementById("feedback");
-  fb.style.display = "block";
-  var praise = ["\u2713 Richtig!", "\u2713 Genau!", "\u2713 Sehr gut!", "\u2713 Korrekt!", "\u2713 Perfekt!", "\u2713 Super!"];
-  var praiseText = praise[Math.floor(Math.random() * praise.length)];
-
-  if (correct) {
-    fb.className = "feedback-box correct";
-    var cErklText = "";
-    if (q.prompt === "Welches Stilmittel wird hier erkl\u00e4rt?") {
-      cErklText = "Beispiel: " + q.item.beispiel + " \u2014 Wirkung: " + q.item.wirkung;
-    } else if (q.prompt === "Was ist die Wirkung?") {
-      cErklText = q.item.erklaerung;
-    } else if (q.prompt === "Welches Stilmittel hat diese Wirkung?") {
-      cErklText = q.item.erklaerung + " \u2014 Beispiel: " + q.item.beispiel;
-    } else {
-      // Beispiel → Name: erklaerung + wirkung
-      cErklText = q.item.erklaerung + " \u2014 Wirkung: " + q.item.wirkung;
-    }
-    fb.innerHTML = '<div class="fb-title">' + praiseText + '</div>'
-      + '<div class="fb-erkl">' + cErklText + '</div>';
-  } else {
-    fb.className = "feedback-box wrong";
-    var erklText = "";
-    if (q.prompt === "Welches Stilmittel wird hier erkl\u00e4rt?") {
-      // Erklärung war schon die Frage → zeige stattdessen das Beispiel
-      erklText = "Beispiel: " + q.item.beispiel;
-    } else if (q.prompt === "Was ist die Wirkung?") {
-      erklText = q.item.erklaerung + " \u2192 Wirkung: " + q.item.wirkung;
-    } else {
-      erklText = q.item.name + ": " + q.item.erklaerung;
-    }
-    fb.innerHTML = '<div class="fb-title">\u2717 Richtig w\u00e4re: \u201e' + q.answer + '\u201c</div>'
-      + '<div class="fb-erkl">' + erklText + '</div>';
-  }
-  document.getElementById("prog-fill").style.width = ((qIndex + 1) / questions.length * 100) + "%";
-  var nb = document.getElementById("next-btn");
-  nb.textContent = (qIndex + 1 >= questions.length) ? "Auswertung \u2192" : "Weiter \u2192";
-  nb.classList.add("show");
-}
-
-function nextQuestion() {
-  qIndex++;
-  if (qIndex >= questions.length) { showResult(); } else { renderQuestion(); }
-}
-
-function showResult() {
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("result").classList.remove("hidden");
-  var pct = Math.round(score / questions.length * 100);
-  var emojis = ["\uD83D\uDCAA", "\uD83D\uDCAA", "\uD83D\uDCDA", "\uD83D\uDC4D", "\uD83C\uDFC6"];
-  var msgs = ["Nicht aufgeben!", "Nicht aufgeben!", "Noch \u00fcben!", "Gut gemacht!", "Perfekt!"];
-  var idx = pct === 100 ? 4 : pct >= 70 ? 3 : pct >= 40 ? 2 : 1;
-  document.getElementById("trophy").textContent = emojis[idx];
-  document.getElementById("result-msg").textContent = msgs[idx];
-  document.getElementById("result-info").textContent = score + " von " + questions.length + " Fragen richtig (" + pct + " %)";
-  var wl = document.getElementById("wrong-list");
-  if (wrongAnswers.length > 0) {
-    wl.classList.remove("hidden");
-    document.getElementById("wrong-items").innerHTML = wrongAnswers.map(function(w) {
-      return '<div class="wrong-item">'
-        + '<div class="sm-name">' + w.item.name + '</div>'
-        + '<div class="sm-kat">' + w.item.kat + '</div>'
-        + '<div class="sm-bsp">' + w.item.beispiel + '</div>'
-        + '<div class="sm-erkl">Erkl\u00e4rung: ' + w.item.erklaerung + '</div>'
-        + '<div class="sm-wkng">Wirkung: ' + w.item.wirkung + '</div>'
-        + '<div class="sm-chosen">Deine Antwort: ' + w.chosen + '</div>'
-        + '</div>';
-    }).join("");
-  } else { wl.classList.add("hidden"); }
-}
-
-function replay() { startQuiz(currentMode); }
-function goHome() {
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("result").classList.add("hidden");
-  document.getElementById("home").classList.remove("hidden");
-}
+// Auto-check on load
+checkServer();
+// Repeat every 8 seconds
+setInterval(checkServer, 8000);
 </script>
 </body>
 </html>
